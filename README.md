@@ -7,18 +7,22 @@ Installation
 To install this library, download the .zip file and with Arduino open, go 'Sketch->Include Library->Add .ZIP Library...' and open the downloaded file. Or, just place the extracted library as a subfolder in your Arduino/libraries folder.
 
 When installed, this library should look like:
+|File/Folder|Description|
+|--|--|
+|Arduino/libraries/Plex64|This library's folder|
+|Arduino/libraries/Plex64/Plex64.cpp|Library implementation file|
+|Arduino/libraries/Plex64/Plex64.h|Library description file|
+|Arduino/libraries/Plex64/keywords.txt|Syntax coloring file|
+|Arduino/libraries/Plex64/examples|Examples in the 'open' menu)|
+|Arduino/libraries/Plex64/readme.txt|This file|
 
-Arduino/libraries/Plex64 (this library's folder)
-Arduino/libraries/Plex64/Plex64.cpp (the library implementation file)
-Arduino/libraries/Plex64/Plex64.h       (the library description file)
-Arduino/libraries/Plex64/keywords.txt   (the syntax coloring file)
-Arduino/libraries/Plex64/examples       (the examples in the'open' menu)
-Arduino/libraries/Plex64/readme.txt     (this file)
-
-Building
+Requirements
 --------
+The Wire library is required, and is included by the library. Wire is a board-specific library and is installed with most boards. You may need to include Wire.h in your sketch to change certain options such as the I2C clock speed.
 
-To use this library in a sketch, go to the Sketch | Import Library menu and select Plex64.  This will add a corresponding line to the top of your sketch:
+Adding to Sketch
+--------
+To use this library in a sketch, go to the Sketch -> Import Library menu and select Plex64.  This will add a corresponding line to the top of your sketch:
 `#include <Plex64.h>`
 
 To stop using this library, delete that line from your sketch.
@@ -57,3 +61,7 @@ uint16_t readAnalog(uint8_t pin, bool force);
 uint16_t getAllChannels(void);
 
 - Gets and returns full 16-bit contents of IO expander output register, can be used to confirm that the expander is being updated correctly.
+
+License
+---------
+This library is licensed under [MIT license](https://opensource.org/licenses/MIT).

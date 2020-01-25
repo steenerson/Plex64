@@ -8,7 +8,7 @@ To install this library, download the .zip file and with Arduino open, go 'Sketc
 
 When installed, this library should look like:
 |File/Folder|Description|
-|--|--|
+|---|---|
 |Arduino/libraries/Plex64|This library's folder|
 |Arduino/libraries/Plex64/Plex64.cpp|Library implementation file|
 |Arduino/libraries/Plex64/Plex64.h|Library description file|

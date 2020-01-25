@@ -34,19 +34,19 @@ void loop() {
     //set all 4 channels (E+F+G+H) to given input (0-15), wait 5ms to stabilize and then read+print all 4 channels
     plex64.setAllChannels(i); 
     delay(5);
-    Serial.print("B");
+    Serial.print("E");
     Serial.print(i);
     Serial.print(" = ");
     Serial.print(analogRead(plexE));
-    Serial.print(", C");
+    Serial.print(", F");
     Serial.print(i);
     Serial.print(" = ");
     Serial.print(analogRead(plexF));
-    Serial.print(", D");
+    Serial.print(", G");
     Serial.print(i);
     Serial.print(" = ");
     Serial.print(analogRead(plexG));
-    Serial.print(", E");
+    Serial.print(", H");
     Serial.print(i);
     Serial.print(" = ");
     Serial.println(analogRead(plexH));

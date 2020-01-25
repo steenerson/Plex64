@@ -70,52 +70,66 @@ void Plex64::setAllChannels(uint8_t input)
 
 // sets one channel (E/F/G/H) to the given input (0-15)
 // @param pin: integer from 0-63 or pin name E0-15,F0-15,G0-15,H0-15
-void Plex64::setChannel(uint8_t pin)
+// @param force: boolean, set true to always update IO expander regardless of current state
+void Plex64::setChannel(uint8_t pin, bool force = 0)
 {
   uint8_t input = 0;  
 
   //channel E
   if (pin < 16) {
     input = pin;
-    if ( _outputRegisterE != input ) {
-        _outputRegisterE = input;
-        updateOutputRegisterLow();
+    if (force == 0 && _outputRegisterE != input ) {
+      _outputRegisterE = input;
+      updateOutputRegisterLow();
+    }
+    else {
+      updateOutputRegisterLow();
     }
   }
   
   //channel F
   else if (pin < 32) {
     input = pin - 16;
-    if ( _outputRegisterF != input ) {
-        _outputRegisterF = input;
-        updateOutputRegisterLow(); 
+    if (force == 0 && _outputRegisterF != input ) {
+      _outputRegisterF = input;
+      updateOutputRegisterLow(); 
+    }
+    else {
+      updateOutputRegisterLow();
     }
   }
   
   //channel G
   else if (pin < 48) {
     input = pin - 32;
-    if ( _outputRegisterG != input ) {
-        _outputRegisterG = input;
-        updateOutputRegisterHigh();
+    if (force == 0 && _outputRegisterG != input ) {
+      _outputRegisterG = input;
+      updateOutputRegisterHigh();
+    }
+    else {
+      updateOutputRegisterHigh();
     }
   }
   
   //channel H
   else if (pin < 64) {
     input = pin - 48;
-    if ( _outputRegisterH != input ) {
-        _outputRegisterH = input;
-        updateOutputRegisterHigh();
+    if (force == 0 && _outputRegisterH != input ) {
+      _outputRegisterH = input;
+      updateOutputRegisterHigh();
+    }
+    else {
+      updateOutputRegisterHigh();
     }
   }
 }
 
 // sets one channel to the given input, reads with analogRead and returns the value. needs a number from 0-63 or pin name, same as setChannel
 // @param pin: integer from 0-63 or pin name E0-15,F0-15,G0-15,H0-15
-uint16_t Plex64::readAnalog(uint8_t pin)
+// @param force: boolean, set true to always update IO expander regardless of current state.
+uint16_t Plex64::readAnalog(uint8_t pin, bool force = 0)
 {
-  setChannel(pin);
+  setChannel(pin, force);
   uint16_t result;
 
   //channel E

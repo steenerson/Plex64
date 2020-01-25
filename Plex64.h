@@ -29,8 +29,8 @@ class Plex64
     Plex64(uint8_t address, uint8_t pinE, uint8_t pinF, uint8_t pinG, uint8_t pinH);
     void begin(void);
     void setAllChannels(uint8_t input);
-    void setChannel(uint8_t pin);
-    uint16_t readAnalog(uint8_t pin);
+    void setChannel(uint8_t pin, bool force);
+    uint16_t readAnalog(uint8_t pin, bool force);
     uint16_t getAllChannels(void);
   private:
     //variables to store instance info

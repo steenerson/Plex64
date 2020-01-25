@@ -31,9 +31,9 @@ To stop using this library, delete that line from your sketch.
 Features
 --------
 
--Supports multiplexing up to 64 inputs into 4 analog pins using 4x CD4067B analog multiplexers/MUXes.
--Configurable 1:1/2:1/4:1/8:1 voltage dividers and OP amp buffering allow high impedance input up to 18V with low settling time. Shield must be configured with VIN larger than the input voltage to support inputs greater than Arduino VBUS (3.3V/5V).
--I2C IO expander minimizes pin requirement footprint and 8 possible addresses support up to 512 analog inputs per I2C bus.
+- Supports multiplexing up to 64 inputs into 4 analog pins using 4x CD4067B analog multiplexers/MUXes.
+- Configurable 1:1/2:1/4:1/8:1 voltage dividers and OP amp buffering allow high impedance input up to 18V with low settling time. Shield must be configured with VIN larger than the input voltage to support inputs greater than Arduino VBUS (3.3V/5V).
+- I2C IO expander minimizes pin requirement footprint and 8 possible addresses support up to 512 analog inputs per I2C bus.
 
 Usage
 --------

@@ -1,4 +1,5 @@
 
+
 This is a C++ library for Arduino, built and tested on version 1.8.10, and based on Arduino's public Test library and 9555 expander examples.
 
 Installation
@@ -14,7 +15,7 @@ When installed, this library should look like:
 |Arduino/libraries/Plex64/Plex64.cpp|Library implementation file|
 |Arduino/libraries/Plex64/Plex64.h|Library description file|
 |Arduino/libraries/Plex64/keywords.txt|Syntax coloring file|
-|Arduino/libraries/Plex64/examples|Examples in the 'open' menu)|
+|Arduino/libraries/Plex64/examples|Examples in the 'open' menu|
 |Arduino/libraries/Plex64/readme.txt|This file|
 
 Requirements
@@ -32,8 +33,14 @@ Features
 --------
 
 - Supports multiplexing up to 64 inputs into 4 analog pins using 4x CD4067B analog multiplexers/MUXes.
-- Configurable 1:1/2:1/4:1/8:1 voltage dividers and OP amp buffering allow high impedance input up to 18V with low settling time. Shield must be configured with VIN larger than the input voltage to support inputs greater than Arduino VBUS (3.3V/5V).
-- I2C IO expander minimizes pin requirement footprint and 8 possible addresses support up to 512 analog inputs per I2C bus.
+- Configurable 1:1/2:1/4:1/8:1 voltage dividers and OP amp buffering allow high impedance input up to 18V with low settling time.
+- I2C IO expander minimizes IO requirement footprint and 8 possible addresses support up to 512 analog inputs per I2C bus.
+
+Getting Started
+---------
+For standard shield-compatible Arduino boards, just plug in the shield, power the Arduino and load one of the library example sketches. The max voltage on any input pin is equal to the Arduino VIN pin or VDD voltage, whichever is higher - do not exceed 5V input when powered by USB, and e.g. measuring 18V inputs requires 18V on the VIN pin. Keep in mind there is a diode drop between the Arduino DC jack and VIN pin, make sure measure with a multimeter!
+
+For detailed hardware info see [the wiki](https://github.com/steenerson/Plex64/wiki).
 
 Usage
 --------
@@ -46,7 +53,7 @@ Plex64(uint8_t address, uint8_t pinE, uint8_t pinF, uint8_t pinG, uint8_t pinH)
 
 void begin(void);
 
-- No parameters or return. This must be run inside setup(). Performs startup tasks for I2C interface, analog inputs and IO expander.
+- No parameters or return. Run inside setup(). Performs startup tasks for I2C interface, analog inputs and IO expander.
 
 void setAllChannels(uint8_t input);
 
@@ -56,13 +63,13 @@ void setAllChannels(uint8_t input);
 
 void setChannel(uint8_t pin, bool force);
 
-   - Sets one single channel to a given input. First it checks the \_outputRegister private variable and only updates the IO expander if it isn't already set, unless 'force' flag is used.
+   - Sets one single channel to a given input. First it checks the \_outputRegister private variable and only updates the IO expander if it isn't already set, unless 'force' flag is set.
 - Parameter 'pin': must be either an integer from 0-63, or a pin name E0-15, F0-15, G0-15, H0-15 which will be translated to 0-63 int using enum table.
 - Parameter 'force': boolean, set to 'true' to skip current status check and always update the IO expander. Can be omitted, which is equivalent to false.
 
 uint16_t readAnalog(uint8_t pin, bool force);
 
-   -    Sets one single channel to a given input (if not set already), and then performs and returns analogRead from the same input. analogRead will be affected by standard Arduino functions such as analogReadResolution().
+   -    Sets one single channel to a given input (if not set already), and then performs and returns analogRead from the same input. analogRead will be affected by functions such as analogReadResolution().
 - Parameter pin: must be either an integer from 0-63, or a pin name E0-15, F0-15, G0-15, H0-15 which will be translated to 0-63 int using enum table.
 - Parameter 'force': boolean, set to 'true' to skip current status check and always update the IO expander. Can be omitted, which is equivalent to false.
 
